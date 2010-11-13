@@ -1,7 +1,7 @@
 
 /* Utils */
 
-double
+static double
 get_ij_binary_search(double *X_data,
                      int *X_indices,
                      int *X_indptr,
