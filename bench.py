@@ -4,7 +4,9 @@ import numpy as np
 import scipy.sparse as sp
 from numpy.testing import assert_array_almost_equal
 
-from dotbench import sparse_dense, sparse_sparse_binary_search
+from dotbench import sparse_dense
+from dotbench import sparse_sparse_binary_search
+from dotbench import sparse_sparse_hash_map
 
 def gen_sparse_matrix(shape, sparsity):
     """Efficient generation of random sparse matrix"""
@@ -61,3 +63,9 @@ if __name__ == '__main__':
     print "sparse-sparse binary search"
     print timeit(sparse_sparse_binary_search, X, w, out)
     assert_array_almost_equal(out, out_ref)
+
+    # sparse-sparse hash map
+    print "sparse-sparse hash map"
+    print timeit(sparse_sparse_hash_map, X, w, out)
+    assert_array_almost_equal(out, out_ref)
+

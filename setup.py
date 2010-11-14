@@ -8,7 +8,7 @@ import numpy as np
 setup(
     name="dotbench",
     cmdclass = {'build_ext': build_ext},
-    ext_modules = [Extension("dotbench", ["dotbench.pyx", "dot.c"],
+    ext_modules = [Extension("dotbench", ["dotbench.pyx", "dot.cpp"],
                              include_dirs = [np.get_include(),'.'],
                              extra_compile_args=['-O3'])],
     py_modules = ['dotbench',],
