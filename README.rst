@@ -8,7 +8,7 @@ sparse-sparse and sparse-dense dot products, especially in the context of
 Machine Learning algorithms.
 
 - Python: Generate data, plots and reports.
-- C: Perform computations.
+- C/C++: Perform computations.
 - Cython: Wrap C code.
 
 Note: Cython is not used for computations to allow more people to read the code
@@ -19,5 +19,5 @@ ToDO
 ====
 
 - Plots and reports for different matrix and weight sparsities
-- Merge, B-tree, Hash-table based sparse-sparse implementations
+- Merge, B-tree, Hash-table (google-sparse-hash?) based sparse-sparse implementations
 - Comparison of different scenarios: training vs prediction, real vs binary features
