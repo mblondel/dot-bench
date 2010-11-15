@@ -48,9 +48,17 @@ if __name__ == '__main__':
             opt[o_name] = o_dflt
 
     # generate data
-    X = gen_sparse_matrix((opt["n_samples"], opt["n_features"]),
+    shape = (opt["n_samples"], opt["n_features"])
+    print "Loading matrix..."
+    print "Shape: ", shape
+    print "Sparsity: ", opt["matrix_sparsity"]
+    X = gen_sparse_matrix(shape,
                           opt["matrix_sparsity"])
-    w = gen_sparse_matrix((1, opt["n_features"]),
+    print "Loading vectore..."
+    shape = (1, opt["n_features"])
+    print "Shape: ", shape
+    print "Sparsity: ", opt["weight_sparsity"]
+    w = gen_sparse_matrix(shape,
                           opt["weight_sparsity"])
 
     # sparse-dense
