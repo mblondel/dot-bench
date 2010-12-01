@@ -7,6 +7,7 @@ from numpy.testing import assert_array_almost_equal
 from dotbench import sparse_dense
 from dotbench import sparse_sparse_binary_search
 from dotbench import sparse_sparse_hash_map
+from dotbench import sparse_sparse_incremental
 
 def gen_sparse_matrix(shape, sparsity):
     """Efficient generation of random sparse matrix"""
@@ -54,26 +55,29 @@ if __name__ == '__main__':
     print "Sparsity: ", opt["matrix_sparsity"]
     X = gen_sparse_matrix(shape,
                           opt["matrix_sparsity"])
-    print "Loading vectore..."
+    print "Loading vector..."
     shape = (1, opt["n_features"])
     print "Shape: ", shape
     print "Sparsity: ", opt["weight_sparsity"]
     w = gen_sparse_matrix(shape,
                           opt["weight_sparsity"])
 
-    # sparse-dense
-    out_ref = np.zeros(X.shape[0], dtype=np.float64)
     print "sparse-dense"
+    out_ref = np.zeros(X.shape[0], dtype=np.float64)
     print timeit(sparse_dense, X, w.toarray().ravel(), out_ref)
 
-    # sparse-sparse binary search
-    out = np.zeros(X.shape[0], dtype=np.float64)
     print "sparse-sparse binary search"
+    out = np.zeros(X.shape[0], dtype=np.float64)
     print timeit(sparse_sparse_binary_search, X, w, out)
     assert_array_almost_equal(out, out_ref)
 
-    # sparse-sparse hash map
     print "sparse-sparse hash map"
+    out = np.zeros(X.shape[0], dtype=np.float64)
     print timeit(sparse_sparse_hash_map, X, w, out)
+    assert_array_almost_equal(out, out_ref)
+
+    print "sparse-sparse incremental"
+    out = np.zeros(X.shape[0], dtype=np.float64)
+    print timeit(sparse_sparse_incremental, X, w, out)
     assert_array_almost_equal(out, out_ref)
 
