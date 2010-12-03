@@ -62,6 +62,10 @@ if __name__ == '__main__':
     w = gen_sparse_matrix(shape,
                           opt["weight_sparsity"])
 
+    print "Sorting indices..."
+    X.sort_indices()
+    w.sort_indices()
+
     print "sparse-dense"
     out_ref = np.zeros(X.shape[0], dtype=np.float64)
     print timeit(sparse_dense, X, w.toarray().ravel(), out_ref)
